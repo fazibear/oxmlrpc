@@ -1,3 +1,5 @@
+require 'ox'
+
 module OXMLRPC
   class Serializer
     
