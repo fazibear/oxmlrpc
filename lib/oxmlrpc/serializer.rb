@@ -1,5 +1,10 @@
 module OXMLRPC
   class Serializer
+    
+    def self.serialize(data)
+      self.new(data).to_rpc
+    end
+    
     def initialize(data = {})
       @data = data
     end
@@ -21,6 +26,10 @@ module OXMLRPC
       when Integer then serialize_integer(sth)
       when Hash then serialize_hash(sth)
       when Array then serialize_array(sth)
+      when Float then serialize_double(sth)
+      when TrueClass then serialize_boolean(true)
+      when FalseClass then serialize_boolean(false)
+      when Time then serialize_time(sth)
       else
         raise "Uknkown type"
       end
@@ -56,7 +65,28 @@ module OXMLRPC
     def serialize_integer(integer)
       value = Ox::Element.new('value')
       value << int = Ox::Element.new('int')
-      value << integer.to_s
+      int << integer.to_s
+      value
+    end
+    
+    def serialize_double(float)
+      value = Ox::Element.new('value')
+      value << double = Ox::Element.new('double')
+      double << float.to_s
+      value
+    end
+    
+    def serialize_boolean(boolean)
+      value = Ox::Element.new('value')
+      value << bool = Ox::Element.new('boolean')
+      bool << (boolean ? "1" : "0")
+      value
+    end
+    
+    def serialize_time(time)
+      value = Ox::Element.new('value')
+      value << td = Ox::Element.new('dateTime.iso8601')
+      td << time.strftime("%Y%m%dT%H:%M:%S")
       value
     end
   end
