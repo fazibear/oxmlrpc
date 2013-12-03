@@ -1,3 +1,9 @@
+PATH
+  remote: .
+  specs:
+    oxmlrpc (0.1)
+      ox (~> 2.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -16,5 +22,5 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  ox
+  oxmlrpc!
   rspec
