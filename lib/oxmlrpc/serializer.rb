@@ -6,7 +6,24 @@ module OXMLRPC
     def self.serialize(data)
       self.new(data).to_rpc
     end
-    
+
+    def self.fault(code, string)
+      doc = Ox::Document.new(:version => '1.0')
+      doc << mr = Ox::Element.new('methodResponse')
+      mr << fault = Ox::Element.new('fault')
+      fault << value = Ox::Element.new('value')
+      value << struct = Ox::Element.new('struct')
+      struct << member = Ox::Element.new('member')
+      member << (Ox::Element.new('name') << "faultCode")
+      member << value = Ox::Element.new('value')
+      value << int = (Ox::Element.new('int') << code.to_s)
+      struct << member = Ox::Element.new('member')
+      member << (Ox::Element.new('name') << "faultString")
+      member << value = Ox::Element.new('value')
+      value << string = (Ox::Element.new('string') << string.to_s)
+      Ox.dump(doc, :indent => -1)
+    end
+
     def initialize(data = {})
       @data = data
     end

@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'oxmlrpc'
-  s.version     = '0.1'
+  s.version     = '0.2'
   s.date        = Time.now.strftime("%Y-%m-%d")
   s.authors     = ['fazibear']
   s.email       = 'fazibear@gmail.com'
