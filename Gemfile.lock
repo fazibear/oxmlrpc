@@ -1,14 +1,14 @@
 PATH
   remote: .
   specs:
-    oxmlrpc (0.1)
+    oxmlrpc (0.2.1)
       ox (~> 2.0)
 
 GEM
   remote: http://rubygems.org/
   specs:
     diff-lcs (1.2.4)
-    ox (2.0.11)
+    ox (2.4.5)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
@@ -24,3 +24,6 @@ PLATFORMS
 DEPENDENCIES
   oxmlrpc!
   rspec
+
+BUNDLED WITH
+   1.12.5
