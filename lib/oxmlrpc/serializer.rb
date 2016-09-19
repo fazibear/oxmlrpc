@@ -49,6 +49,7 @@ module OXMLRPC
       when TrueClass then serialize_boolean(true)
       when FalseClass then serialize_boolean(false)
       when Time then serialize_time(sth)
+      when nil then serialize_nil
       else
         raise "Uknkown type"
       end
@@ -106,6 +107,12 @@ module OXMLRPC
       value = Ox::Element.new('value')
       value << td = Ox::Element.new('dateTime.iso8601')
       td << time.strftime("%Y%m%dT%H:%M:%S")
+      value
+    end
+
+    def serialize_nil
+      value = Ox::Element.new('value')
+      value << Ox::Element.new('nil')
       value
     end
   end

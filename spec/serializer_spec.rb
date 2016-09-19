@@ -35,13 +35,17 @@ describe OXMLRPC::Serializer do
     OXMLRPC::Serializer.serialize([12, "test"]).chomp
       .should eq "<methodResponse><params><param><value><array><data><value><int>12</int></value><value>test</value></data></array></value></param></params></methodResponse>"
   end
+
+  it 'should serialize nil' do
+    OXMLRPC::Serializer.serialize(nil).chomp
+      .should eq "<methodResponse><params><param><value><nil/></value></param></params></methodResponse>"
+  end
   
   it 'should serialize <exception> value' do
     pending
     OXMLRPC::Serializer.serialize(StandardError.new("something wrong")).chomp
       .should eq ""
   end
-
 end
 
 
